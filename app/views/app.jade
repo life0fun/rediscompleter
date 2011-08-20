@@ -1,0 +1,19 @@
+!!! 5
+html(lang="en")
+  head
+    != SocketStream
+    title AutoCompletion
+    script(type='text/javascript', src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js")
+    script(src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js")
+  body
+    #content
+      //img(src='/images/logo.png', alt='SocketStream Logo', width=167, height=159)
+      h1 Welcome to Auto-complete 
+      //p#message Attempting to connect to the server over websockets or flashsockets...
+    #search
+      //div Search:
+      div 
+        input(type='text', id='search-input')  
+    #results.centre
+      table#tweets
+
