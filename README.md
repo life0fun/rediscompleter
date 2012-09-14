@@ -2,33 +2,21 @@
 
 To demo how to use socketstream and redis to build an real-time auto-completer.
 
+Note that this app is based on old SocketStream @0.2.X.
+
 Usage: 
   1. redis-server
   2. socketstream new <name_of_your_project>
   3. socketstream start
 
-## Init and WebSock session establishment
+##  Redis Connection
 
-  1. server side exposes all server side function thru exports.actions object.
-     when init called, websock session already created. put your init here.
+SocketStream @0.2.x connects to Redis server by default when started.
+Application can refer to Redis connection with SS attribute R.
 
-> @session is the session object, has `username user_id`, `@session.setUserId data.name`.
+````
+    R.zadd ZKEY_COMPL, 0, prefix, (err, result) ->
 
-    exports.actions =
-	    init: (cb) ->
-		  cb 'server inited properly'
+    R.zrange ZKEY_COMPL, start, start+rangelen-1, (err, entries) ->
 
-	    search: (args, cb) ->
-
-
-  2. Client side, entry into init once websock session established.
-	 Put your start code there.
-
-    exports.init = ->
-      # Make a call to the server to check whether server inited properly
-      SS.server.app.init (response) -> console.log 'server init status:' + response
-
-  3. display sign in dialog, and once user signed in, bind callback to all DOM objects.
-
-
-## Now you are on your own...
+````
